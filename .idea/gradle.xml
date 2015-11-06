@@ -9,7 +9,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/android-bt-test" />
+            <option value="$PROJECT_DIR$/android-bintray-lib" />
             <option value="$PROJECT_DIR$/libraryuserapp" />
           </set>
         </option>

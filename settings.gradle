@@ -1,1 +1,1 @@
-include ':android-bt-test', ':libraryuserapp'
+include ':android-bintray-lib', ':libraryuserapp'
