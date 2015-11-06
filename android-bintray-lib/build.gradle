@@ -42,9 +42,10 @@ publishing {
         MyPublication(MavenPublication) {
             groupId 'com.satoshi.kumano.example'
             artifactId 'bintraytest'
-            version '1.0.9'
-            artifact("${project.getBuildDir()}/intermediates/bundles/debug/classes.jar") {
-                extension 'jar'
+            version '1.0.10'
+            artifact("${project.getBuildDir()}/outputs/aar/android-bt-test-debug.aar") {
+                classifier = 'library'
+                extension = 'aar'
             }
             pom.withXml {
                 def dependenciesNode = asNode().appendNode('dependencies')
@@ -62,11 +63,6 @@ publishing {
                     node.appendNode('artifactId', it.name)
                     node.appendNode('version', it.version)
                 }
-//                def node = dependenciesNode.appendNode('dependency')
-//                node.appendNode('groupId', 'junit')
-//                node.appendNode('artifactId', 'junit')
-//                node.appendNode('version', '4.0.0')
-//                node.appendNode('scope', 'test')
             }
         }
     }
@@ -85,7 +81,7 @@ bintray {
         licenses = ['Apache-2.0']
         vcsUrl = 'https://github.com/satoshikumano/misc'
         version {
-            name = '1.0.9'
+            name = '1.0.10'
         }
         publications = ['MyPublication']
     }
