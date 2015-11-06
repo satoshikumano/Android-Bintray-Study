@@ -1,0 +1,96 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'maven-publish'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.4'
+    }
+}
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.1.0'
+    compile 'com.squareup.okhttp:okhttp:2.5.0'
+}
+
+
+publishing {
+    publications {
+        MyPublication(MavenPublication) {
+            groupId 'com.satoshi.kumano.example'
+            artifactId 'bintraytest'
+            version '1.0.9'
+            artifact("${project.getBuildDir()}/intermediates/bundles/debug/classes.jar") {
+                extension 'jar'
+            }
+            pom.withXml {
+                def dependenciesNode = asNode().appendNode('dependencies')
+                configurations.compile.allDependencies.each {
+                    // Skip local file dependencies.
+                    if (it.group == null)
+                        return
+                    if (it.name == null)
+                        return
+                    if (it.version == null)
+                        return
+
+                    def node = dependenciesNode.appendNode('dependency')
+                    node.appendNode('groupId', it.group)
+                    node.appendNode('artifactId', it.name)
+                    node.appendNode('version', it.version)
+                }
+//                def node = dependenciesNode.appendNode('dependency')
+//                node.appendNode('groupId', 'junit')
+//                node.appendNode('artifactId', 'junit')
+//                node.appendNode('version', '4.0.0')
+//                node.appendNode('scope', 'test')
+            }
+        }
+    }
+}
+
+bintray {
+    // gradle bintrayUpload -Pbintray_user={user name} -Pbintray_key={api key}
+    if (project.hasProperty('bintray_user'))
+        user = project.bintray_user
+    if (project.hasProperty('bintray_key'))
+        key = project.bintray_key
+    pkg {
+        repo = 'maven'
+        name = 'example'
+        userOrg = 'satoshikumano'
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/satoshikumano/misc'
+        version {
+            name = '1.0.9'
+        }
+        publications = ['MyPublication']
+    }
+}
+
+bintrayUpload {
+    dependsOn assemble
+}
