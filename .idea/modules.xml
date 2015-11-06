@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BintrayTest.iml" filepath="$PROJECT_DIR$/BintrayTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/android-bt-test/android-bt-test.iml" filepath="$PROJECT_DIR$/android-bt-test/android-bt-test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/libraryuserapp/libraryuserapp.iml" filepath="$PROJECT_DIR$/libraryuserapp/libraryuserapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android-bintray-lib/android-bintray-lib.iml" filepath="$PROJECT_DIR$/android-bintray-lib/android-bintray-lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/client-app/client-app.iml" filepath="$PROJECT_DIR$/client-app/client-app.iml" />
     </modules>
   </component>
 </project>
