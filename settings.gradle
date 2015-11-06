@@ -1,1 +1,1 @@
-include ':android-bintray-lib', ':libraryuserapp'
+include ':android-bintray-lib', ':client-app'

@@ -10,7 +10,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/android-bintray-lib" />
-            <option value="$PROJECT_DIR$/libraryuserapp" />
+            <option value="$PROJECT_DIR$/client-app" />
           </set>
         </option>
       </GradleProjectSettings>
